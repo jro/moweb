@@ -46,6 +46,7 @@ Our current format is
 > awesome
 > code
 > ```
+> 
 > more markdown
 
 which gets eaten up by a fancy regexp
@@ -67,7 +68,6 @@ module MoWEB
     filename = snippet[1]
     language = snippet[2]
     code     = snippet[3]
-
     file = fetch_file(filename)
     file << code
   end
