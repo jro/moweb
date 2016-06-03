@@ -46,8 +46,9 @@ Our current format is
 > awesome
 > code
 > ```
->
 > more markdown
+
+which gets eaten up by a fancy regexp
 
 > moweb.cr
 ```crystal
