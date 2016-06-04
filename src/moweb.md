@@ -72,6 +72,7 @@ module MoWEB
     filename = snippet[1]
     language = snippet[2]
     code     = snippet[3]
+    
     file = fetch_file(filename)
     file << code
   end
@@ -115,21 +116,26 @@ require "option_parser"
 
 module MoWEB
   @@files = {} of String => File
+  
   def self.fetch_file(filepath)
     @@files.fetch(filepath) do
       @@files[filepath] = File.open(filepath,"w+")
     end
   end
+  
   def self.run
     file = ARGV.size > 0 ? ARGV.first : nil
     display_help_and_exit unless ( file && File.exists?(file) )
+    
     f = File.read(file)
     grab_fenced_code(f).each do |snippet|
       output_code(snippet)
     end
+    
     @@files.each {|x,y| y.close }
   end
 end
+
 MoWEB.run
 ```
 
