@@ -17,7 +17,8 @@ TODO: Write installation instructions here
 
 Basic usage to render source files: `moweb ./some/path/to/file_or_directory`
 
-> moweb.cr
+>> moweb.cr
+
 ```crystal
 module MoWEB
   def self.display_help_and_exit
@@ -39,7 +40,8 @@ Our current format is
 
 > ..some markdown
 > 
-> > filename.something
+> >> filename.something
+> 
 > ```optional_language_name
 > some
 > really
@@ -51,7 +53,8 @@ Our current format is
 
 which gets eaten up by a fancy regexp
 
-> moweb.cr
+>> moweb.cr
+
 ```crystal
 module MoWEB
   def self.grab_fenced_code(str="")
@@ -61,7 +64,8 @@ end
 ```
 
 Which gets written out based on the prefixed filename
-> moweb.cr
+>> moweb.cr
+
 ```crystal
 module MoWEB
   def self.output_code(snippet)
@@ -104,9 +108,11 @@ TODO: Write development instructions here
 - [Jason Rohwedder](https://github.com/jro)
 
 
-> moweb.cr
+>> moweb.cr
+
 ```crystal
 require "option_parser"
+
 module MoWEB
   @@files = {} of String => File
   def self.fetch_file(filepath)
