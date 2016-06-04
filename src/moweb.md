@@ -69,12 +69,12 @@ Which gets written out based on the prefixed filename
 
 ```crystal
 module MoWEB
-  def self.output_code(snippet)
-    filename = snippet[1]
+  def self.output_code(base_path,snippet)
+    filepath = [ base_path, snippet[1] ].join("/")
     language = snippet[2]
     code     = snippet[3]
 
-    file = fetch_file(filename)
+    file = fetch_file(filepath)
     file << code
   end
 end
@@ -124,16 +124,31 @@ module MoWEB
     end
   end
 
-  def self.run
-    file = ARGV.size > 0 ? ARGV.first : nil
-    display_help_and_exit unless ( file && File.exists?(file) )
+  def self.close_all_files
+    @@files.each_value {|f| f.close }
+  end
 
-    f = File.read(file)
-    grab_fenced_code(f).each do |snippet|
-      output_code(snippet)
+  def self.process_file(file)
+    src  = File.read(file)
+    path = File.dirname(File.expand_path(file))
+
+    grab_fenced_code(src).each do |snippet|
+      output_code(path,snippet)
     end
+  end
 
-    @@files.each {|x,y| y.close }
+  def self.run
+    path = ARGV.size > 0 ? ARGV.first : nil
+    display_help_and_exit unless ( path && File.exists?(path) )
+
+    if File.directory?(path)
+      Dir.glob(path + "/**/*.md").each do |f|
+        process_file(f)
+      end
+    else
+      process_file(path)
+    end
+    close_all_files
   end
 end
 
