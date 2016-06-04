@@ -59,7 +59,7 @@ which gets eaten up by a fancy regexp
 ```crystal
 module MoWEB
   def self.grab_fenced_code(str="")
-    str.scan(/^>\s([^\n]+)\n^```(\w+)?$(.*?)\n^```$\n/m)
+    str.scan(/^>>\s([^\n]+)\n\n^```(\w+)?$(.*?)\n^```$\n/m)
   end
 end
 ```
