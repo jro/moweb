@@ -38,18 +38,19 @@ easier on some projects
 
 Our current format is
 
-> ..some markdown
-> 
-> >> filename.something
-> 
-> ```optional_language_name
-> some
-> really
-> awesome
-> code
-> ```
-> 
-> more markdown
+    # some markdown
+    
+    >> filename.something
+    
+    ```optional_language_name
+    some
+    really
+    awesome
+    code
+    ``` 
+    
+     * more markdown
+
 
 which gets eaten up by a fancy regexp
 
