@@ -5,6 +5,8 @@ Make sure you have make and crystal-lang installed and run `make`.
 >> Makefile
 
 ```Makefile
+# Who builds the builders?
+# Regenerate me with "moweb BUILDING.md"
 CRYSTAL_BIN ?= $(shell which crystal)
 MOWEB_BIN ?= $(shell which moweb)
 FLAGS ?= --release --link-flags="-static"
